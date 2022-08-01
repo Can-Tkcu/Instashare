@@ -1,0 +1,42 @@
+h1{
+    font-family: 'Lobster Two', cursive;
+    font-size: 2;
+}
+
+
+nav{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid lightgray;
+    height: 75px;
+}
+
+
+.nav-wrapper{
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    width: 850px;
+    justify-content: space-between;
+}
+
+.nav-wrapper form {
+    width: 300px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-options img{
+    height: 25px;
+    margin-left: 8px;
+}
+
+@media (min-width: 1200px) {
+    .h1, h1 {
+        font-size: 1.9rem;
+    }
+}

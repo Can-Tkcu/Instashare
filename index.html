@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+<head>     
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
     <title>Instashare</title>
 </head>
+
 <body>
-    <div>
-        <h1>INSTASHARE</h1>
-       
+    <nav>
+        <div class="nav-wrapper">
+            <h1>Instashare</h1>
+            <form onsubmit="submitSearch(); return false;">
+                <input type="text" class="input-group-text" id="name" placeholder="Search...">
+            </form>
+            <div class="nav-options">
+                <img src="img/bootstrap-icons-1.9.1/house-door.svg">
+                <img src="img/bootstrap-icons-1.9.1/chat-dots.svg">
+                <img src="img/bootstrap-icons-1.9.1/plus-square.svg">
+                <img src="img/bootstrap-icons-1.9.1/compass.svg">
+                <img src="img/bootstrap-icons-1.9.1/heart.svg">
+                <img src="img/bootstrap-icons-1.9.1/person-circle.svg">
+            </div>
+                                 
         
-    </div>
+        </div>
+    </nav>
+
+
+
+
 </body>
+
 </html>
