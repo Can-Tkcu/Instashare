@@ -1,6 +1,6 @@
 h1{
     font-family: 'Lobster Two', cursive;
-    font-size: 2;
+    font-size: 2rem;
 }
 
 ::-webkit-scrollbar {
@@ -36,6 +36,7 @@ nav{
     width: 300px;
     display: flex;
     justify-content: flex-end;
+    outline: none;
 }
 
 .nav-options{
@@ -84,11 +85,19 @@ nav{
 }
 
 .main-content{
-    height: 100%;
-    width: 100%;
     position: relative;
     top: 75px;
+    height: 100%;
+    width: 100%;
+    padding: 16px;
     background-color: rgb(241, 241, 241);
+    display: flex;
+    justify-content: center;
+}
+
+.main-content-wrapper{
+    display: flex;
+    flex-direction: column;
 }
 
 .swiper-bar-wrapper{
@@ -100,8 +109,8 @@ nav{
 .swiper-bar-container{
     display: flex;
     overflow-x: scroll;
-    height: 120px;
-    width: 450px;
+    height: 115px;
+    width: 475px;
     border-radius: 10px;
     background-color: rgb(248, 248, 248);
     border: 1px solid lightgray;
@@ -114,17 +123,58 @@ nav{
 }
 
 
+.card-body{
+    display: flex;
+    height: 100%;
+}
+
+.post-card{
+    margin: 16px;
+    border-radius: 10px;
+    height: 850px;
+    width: 475px;
+    background-color: rgb(248, 248, 248);
+    border: 1px solid lightgray;
+}
+
+.post-card-wrapper{
+    display: flex;
+}
 
 
+.info-box{
+    height: 600px;
+    width: 320px;
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+}
 
+.user{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin: 8px;
+    justify-content: space-between;
+}
 
+.user img{
+    height: 50px;
+}
 
+.info-text{
+    display: flex;
+    justify-content: space-between;
+    margin: 8px;
+}
 
+.suggested-users{
+    margin: 8px;
+}
 
-
-
-
-
+footer{
+    margin: 8px 0px;
+}
 
 
 
