@@ -1,7 +1,7 @@
 let posts = [
     {
         'author': 'Author1',
-        'image': '',
+        'image': 'img/bootstrap-icons-1.9.1/person-circle.svg',
         'description': 'Text123',
         'location': 'Germany'
     },
@@ -47,15 +47,23 @@ function render() {
     renderPostCards();
 }
 
-function renderPostCards() {
+
+/* Object.keys(posts).forEach(post => {
+    let tmpl = `<p>${posts[post].title}</p><br>
+      <p>${posts[post].description}</p>
+      <img src="${posts[post].image}">`;
+    document.getElementById("postRoutes").innerHTML += tmpl;
+  }); */
+
+ function renderPostCards() {
     for (let i = 0; i < posts.length; i++) {
         const post = posts[i];
 
-        postContainer.innerHTML += /*html*/`
+        postContainer.innerHTML += `
         <div class="post-card">
             <div class="post-card-wrapper">
                 <div>
-                     ${post["image"]}
+                     <img src="${post["image"]}">
                 </div>
                 <div>
                     <div class="author-wrapper">
@@ -72,10 +80,6 @@ function renderPostCards() {
                     options
                 </div>
             </div>
-           
-        
-        
-        
         </div>`;
     }
-}
+} 
