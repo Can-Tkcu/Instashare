@@ -1,101 +1,102 @@
 let posts = [
-    {
-        'author': 'Author1',
-        'image': 'img/bootstrap-icons-1.9.1/person-circle.svg',
-        'content': 'img/image-01.jpg',
-        'description': 'Text123',
-        'location': 'Germany',
-        'comments': []
-    },
-    {
-        'author': 'Author2',
-        'image': 'img/bootstrap-icons-1.9.1/person-circle.svg',
-        'content': 'img/image-02.jpg',
-        'description': 'Text123',
-        'location': 'Germany',
-        'comments': []
-    },
-    {
-        'author': 'Author3',
-        'image': 'img/bootstrap-icons-1.9.1/person-circle.svg',
-        'content': 'img/image-03.jpg',
-        'description': 'Text123',
-        'location': 'Germany',
-        'comments': []
-    },
-    {
-        'author': 'Author4',
-        'image': 'img/bootstrap-icons-1.9.1/person-circle.svg',
-        'content': 'img/image-04.jpg',
-        'description': 'Text123',
-        'location': 'Germany',
-        'comments': []
-    },
-    {
-        'author': 'Author5',
-        'image': 'img/bootstrap-icons-1.9.1/person-circle.svg',
-        'content': 'img/image-05.jpg',
-        'description': 'Text123',
-        'location': 'Germany',
-        'comments': []
-    },
-    {
-        'author': 'Author6',
-        'image': 'img/bootstrap-icons-1.9.1/person-circle.svg',
-        'content': 'img/image-06.jpg',
-        'description': 'Text123',
-        'location': 'Germany',
-        'comments': []
-    },
+  {
+    author: "can.tkcu",
+    image: "img/bootstrap-icons-1.9.1/person-circle.svg",
+    content: "img/image-01.jpg",
+    description: "Birb enjoying piggie boat",
+    location: "Vacation",
+    comments: ["So Cute!"],
+  },
+  {
+    author: "Author2",
+    image: "img/bootstrap-icons-1.9.1/person-circle.svg",
+    content: "img/image-02.jpg",
+    description: "Text123",
+    location: "Germany",
+    comments: [],
+  },
+  {
+    author: "Author3",
+    image: "img/bootstrap-icons-1.9.1/person-circle.svg",
+    content: "img/image-03.jpg",
+    description: "Text123",
+    location: "Germany",
+    comments: [],
+  },
+  {
+    author: "Author4",
+    image: "img/bootstrap-icons-1.9.1/person-circle.svg",
+    content: "img/image-04.jpg",
+    description: "Text123",
+    location: "Germany",
+    comments: [],
+  },
+  {
+    author: "Author5",
+    image: "img/bootstrap-icons-1.9.1/person-circle.svg",
+    content: "img/image-05.jpg",
+    description: "Text123",
+    location: "Germany",
+    comments: [],
+  },
+  {
+    author: "Author6",
+    image: "img/bootstrap-icons-1.9.1/person-circle.svg",
+    content: "img/image-06.jpg",
+    description: "Text123",
+    location: "Germany",
+    comments: [],
+  },
 ];
 
-
-let postContainer = document.getElementById('postCards');
+let postContainer = document.getElementById("postCards");
 
 function submitSearch() {
-    console.log('searched');
+  console.log("searched");
 }
 
 function render() {
-    renderPostCards();
+  renderPostCards();
+  renderComments();
 }
 
-
-/* Object.keys(posts).forEach(post => {
-    let tmpl = `<p>${posts[post].title}</p><br>                 
-      <p>${posts[post].description}</p>
-      <img src="${posts[post].image}">`;
-    document.getElementById("postRoutes").innerHTML += tmpl;
-  }); */
-
+/** TODO's
+ * new Usernames
+ * Username before comment
+ * description needs text
+ * buttons onclick = fill 
+ * implement emojis!
+ * responsive
+ * brainstorm addit. Ideas
+ */
 
 /**
- * This Function renders the Post Cards 
+ * This Function renders the Post Cards
  */
 function renderPostCards() {
-    for (let i = 0; i < posts.length; i++) {
-        const post = posts[i];
-        postContainer.innerHTML += generatePostCard(i);
-
-    }
+  for (let i = 0; i < posts.length; i++) {
+    const post = posts[i];
+    postContainer.innerHTML += generatePostCard(i);
+  }
 }
-
+/**
+ * This function renders the comments
+ */
 function renderComments() {
-    for (let i = 0; i < posts.length; i++) {
-        const post = posts[i];
-        let commentOUT = document.getElementById(`commentOUT${i}`)
-        commentOUT.innerHTML = '';
-        for (let j = 0; j < post['comments'].length; j++) {
-            const comment = post['comments'][j];
-            commentOUT.innerHTML += `<div>${comment}</div>`;
-        }
+  for (let i = 0; i < posts.length; i++) {
+    const post = posts[i];
+    let commentOUT = document.getElementById(`commentOUT${i}`);
+    commentOUT.innerHTML = "";
+    for (let j = 0; j < post["comments"].length; j++) {
+      const comment = post["comments"][j];
+      commentOUT.innerHTML += `<div>${comment}</div>`;
     }
+  }
 }
-
 
 function generatePostCard(index) {
-    const post = posts[index];
-    return /*html*/`
+  const post = posts[index];
+  return /*html*/ `
     <div class="post-card">
         <div class="card-header-wrapper">
             <div class="card-header-container">
@@ -105,9 +106,9 @@ function generatePostCard(index) {
                 <div class="author-wrapper">
                     <div>
                         <span><b>${post["author"]}</b></span>
-                     </div>
-                     <span>${post["location"]}</span> -
-                     <span>${post["description"]}</span>
+                    </div>
+                    <span>${post["location"]}</span> -
+                    <span>${post["description"]}</span>
                 </div>
             </div>
             <div class="post-card-options">
@@ -165,10 +166,9 @@ function generatePostCard(index) {
     </div>`;
 }
 
-
 function submitComment(index) {
-    let input = document.getElementById(`commentIN${index}`);
-    posts[index]['comments'].push(input.value);
-    renderComments();
-    input.value = '';
+  let input = document.getElementById(`commentIN${index}`);
+  posts[index]["comments"].push(input.value);
+  renderComments();
+  input.value = "";
 }
