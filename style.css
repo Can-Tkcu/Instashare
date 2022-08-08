@@ -225,6 +225,10 @@ nav {
     cursor: pointer;
 }
 
+.heart{
+
+}
+
 .Interaction-icons svg:hover {
     opacity: 0.5;
 }
@@ -340,6 +344,22 @@ button.liked svg {
 .emoji-list{
     cursor: pointer;
     display: flex;
+    padding: 2px;
+}
+
+.emoji-list:hover{
+    background-color: var(--bs-gray-200);
+    border-radius: 5px;
+    padding: 2px;
+    transition: 225ms ease-in-out;
+}
+
+.emoji-table span{
+    margin-left: 2px;
+}
+
+.emoji-table span:hover{
+    background-color: var(--bs-gray-400);
 }
 /************************************************************************************************/
 
