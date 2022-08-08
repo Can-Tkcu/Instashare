@@ -5,49 +5,58 @@ let posts = [
     content: "img/image-01.jpg",
     description: "Birb enjoying piggie boat",
     location: "Vacation",
-    comments: ["So Cute!"],
+    comments: ["hahahah"],
   },
   {
-    author: "Author2",
+    author: "LoreHunter1337",
     image: "img/bootstrap-icons-1.9.1/person-circle.svg",
     content: "img/image-02.jpg",
-    description: "Text123",
-    location: "Germany",
+    description: "pulling up at the local bar",
+    location: "Night City",
     comments: [],
   },
   {
-    author: "Author3",
+    author: "Micha.Lenz",
     image: "img/bootstrap-icons-1.9.1/person-circle.svg",
     content: "img/image-03.jpg",
-    description: "Text123",
-    location: "Germany",
+    description: "cruising & vibing",
+    location: "Greece",
     comments: [],
   },
   {
-    author: "Author4",
+    author: "Ezio Auditore",
     image: "img/bootstrap-icons-1.9.1/person-circle.svg",
     content: "img/image-04.jpg",
-    description: "Text123",
-    location: "Germany",
+    description: "Tagliatelle <3",
+    location: "Italy",
     comments: [],
   },
   {
-    author: "Author5",
+    author: "ItsMarie",
     image: "img/bootstrap-icons-1.9.1/person-circle.svg",
     content: "img/image-05.jpg",
-    description: "Text123",
+    description: "Work, Life, Coffee balance",
     location: "Germany",
     comments: [],
   },
   {
-    author: "Author6",
+    author: "EdgePhotography",
     image: "img/bootstrap-icons-1.9.1/person-circle.svg",
     content: "img/image-06.jpg",
-    description: "Text123",
+    description: "Stairway to enlightenment",
     location: "Germany",
     comments: [],
   },
 ];
+
+let emojis = ["😍", "🥰", "😂", "😀", "❤", "💯"];
+
+/** TODO's
+ * implement emojis!
+ * date time
+ * responsive
+ * brainstorm addit. Ideas
+ */
 
 let postContainer = document.getElementById("postCards");
 
@@ -55,43 +64,85 @@ function submitSearch() {
   console.log("searched");
 }
 
+function stopProp(){
+  event.stopPropagation();
+}
+
+function submitComment(index) {
+  let input = document.getElementById(`commentIN${index}`);
+  posts[index]["comments"].push(input.value);
+  renderComments();
+  input.value = "";
+}
+
+function liked(i, like) {
+  let elem = document.getElementById(`like${i}, ${like}`);
+  elem.classList.toggle("liked");
+}
+
+
 function render() {
   renderPostCards();
   renderComments();
 }
 
-/** TODO's
- * new Usernames
- * Username before comment
- * description needs text
- * buttons onclick = fill 
- * implement emojis!
- * responsive
- * brainstorm addit. Ideas
- */
-
-/**
- * This Function renders the Post Cards
- */
 function renderPostCards() {
   for (let i = 0; i < posts.length; i++) {
-    const post = posts[i];
     postContainer.innerHTML += generatePostCard(i);
-  }
+    renderEmojis(i);
+  } 
 }
-/**
- * This function renders the comments
- */
+  
+
 function renderComments() {
   for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
     let commentOUT = document.getElementById(`commentOUT${i}`);
     commentOUT.innerHTML = "";
     for (let j = 0; j < post["comments"].length; j++) {
-      const comment = post["comments"][j];
-      commentOUT.innerHTML += `<div>${comment}</div>`;
+      commentOUT.innerHTML += generatePostComment(i, j);
     }
   }
+}
+
+function renderEmojis(i) {
+  for (let index = 0; index < emojis.length; index++) {
+    let list = document.getElementById(`emojiTable${i}`);
+    const element = emojis[index];
+    list.innerHTML += `<span onclick="addEmoji${i, index}">${element}</span>`;
+  }
+}
+
+function addEmoji(i, index){
+let inputField = document.getElementById(`commentIN${index}`);
+
+//add emoji to input field..
+
+}
+
+function emoji(i) {
+  let elem = document.getElementById(`emojiTable${i}`);
+  elem.classList.toggle("d-none");
+}
+
+
+function generatePostComment(i, j) {
+  const post = posts[i];
+  const comment = post["comments"][j];
+  const like = [j];
+  return /*html*/ `
+  <div class="comment-wrapper">
+      <div class="comment-container">
+          <img src="${post["image"]}">
+          <div>${posts[0]["author"]}</div>
+          <div>${comment}</div>
+      </div>
+       <button id="like${i}, ${like}" onclick="liked(${i}, ${like})">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="darkgray" class="bi bi-heart-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+        </svg>
+       </button>
+ </div>`;
 }
 
 function generatePostCard(index) {
@@ -153,22 +204,18 @@ function generatePostCard(index) {
                 <ins><datetime-local></datetime-local></ins>
             </div>
             <form class="comment-form padding" onsubmit="submitComment(${index}); return false;">
-                <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
-                </svg>
+                <div id="emojiList" class="emoji-list" onclick="emoji(${index})">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16" >
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                      <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+                  </svg>
+                  <div id="emojiTable${index}" class="d-none" onclick="stopProp()">
+
+                  </div>
                 </div>
                 <input id="commentIN${index}" type="text" required  min-length="1" class="comment-input padding" name="UserComment" placeholder="Add Comment...">
                 <button class="post-button">Post</button>
             </form>
         </div>
     </div>`;
-}
-
-function submitComment(index) {
-  let input = document.getElementById(`commentIN${index}`);
-  posts[index]["comments"].push(input.value);
-  renderComments();
-  input.value = "";
 }
