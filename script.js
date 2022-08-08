@@ -5,7 +5,7 @@ let posts = [
     content: "img/image-01.jpg",
     description: "Birb enjoying piggie boat",
     location: "Vacation",
-    comments: ["hahahah"],
+    comments: ["hahahah😂"],
   },
   {
     author: "LoreHunter1337",
@@ -49,22 +49,24 @@ let posts = [
   },
 ];
 
+
 let emojis = ["😍", "🥰", "😂", "😀", "❤", "💯"];
 
+let postContainer = document.getElementById("postCards");
+
+
 /** TODO's
- * implement emojis!
  * date time
  * responsive
  * brainstorm addit. Ideas
  */
 
-let postContainer = document.getElementById("postCards");
 
 function submitSearch() {
   console.log("searched");
 }
 
-function stopProp(){
+function stopProp() {
   event.stopPropagation();
 }
 
@@ -80,7 +82,7 @@ function liked(i, like) {
   elem.classList.toggle("liked");
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////////////RENDER FUNCS////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function render() {
   renderPostCards();
   renderComments();
@@ -90,9 +92,8 @@ function renderPostCards() {
   for (let i = 0; i < posts.length; i++) {
     postContainer.innerHTML += generatePostCard(i);
     renderEmojis(i);
-  } 
+  }
 }
-  
 
 function renderComments() {
   for (let i = 0; i < posts.length; i++) {
@@ -109,15 +110,15 @@ function renderEmojis(i) {
   for (let index = 0; index < emojis.length; index++) {
     let list = document.getElementById(`emojiTable${i}`);
     const element = emojis[index];
-    list.innerHTML += `<span onclick="addEmoji${i, index}">${element}</span>`;
+    list.innerHTML += `<span id="emojis" onclick="addEmoji(${i},${index})">${element}</span>`;
   }
 }
 
-function addEmoji(i, index){
-let inputField = document.getElementById(`commentIN${index}`);
+function addEmoji(i, index) {
+  let inputField = document.getElementById(`commentIN${i}`);
+  let emoji = emojis[index];
 
-//add emoji to input field..
-
+  inputField.value += emoji;
 }
 
 function emoji(i) {
@@ -125,25 +126,7 @@ function emoji(i) {
   elem.classList.toggle("d-none");
 }
 
-
-function generatePostComment(i, j) {
-  const post = posts[i];
-  const comment = post["comments"][j];
-  const like = [j];
-  return /*html*/ `
-  <div class="comment-wrapper">
-      <div class="comment-container">
-          <img src="${post["image"]}">
-          <div>${posts[0]["author"]}</div>
-          <div>${comment}</div>
-      </div>
-       <button id="like${i}, ${like}" onclick="liked(${i}, ${like})">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="darkgray" class="bi bi-heart-fill" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-        </svg>
-       </button>
- </div>`;
-}
+////////////////////////////////////////////////////////////////////////////////////////////GENERATED HTML/JS////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function generatePostCard(index) {
   const post = posts[index];
@@ -218,4 +201,23 @@ function generatePostCard(index) {
             </form>
         </div>
     </div>`;
+}
+
+function generatePostComment(i, j) {
+  const post = posts[i];
+  const comment = post["comments"][j];
+  const like = [j];
+  return /*html*/ `
+  <div class="comment-wrapper">
+      <div class="comment-container">
+          <img src="${post["image"]}">
+          <div>${posts[0]["author"]}</div>
+          <div>${comment}</div>
+      </div>
+       <button id="like${i}, ${like}" onclick="liked(${i}, ${like})">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="darkgray" class="bi bi-heart-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+        </svg>
+       </button>
+ </div>`;
 }
