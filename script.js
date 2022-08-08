@@ -45,7 +45,7 @@ let posts = [
     content: "img/image-06.jpg",
     description: "Stairway to enlightenment",
     location: "Germany",
-    comments: [""],
+    comments: [],
   },
 ];
 
@@ -81,6 +81,13 @@ function liked(i, like) {
   elem.classList.toggle("liked");
 }
 
+function addEmoji(i, index) {
+  let inputField = document.getElementById(`commentIN${i}`);
+  let emoji = emojis[index];
+
+  inputField.value += emoji;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////RENDER FUNCS////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function render() {
@@ -114,19 +121,7 @@ function renderEmojis(i) {
   }
 }
 
-function addEmoji(i, index) {
-  let inputField = document.getElementById(`commentIN${i}`);
-  let emoji = emojis[index];
-
-  inputField.value += emoji;
-}
-
-function emoji(i) {
-  let elem = document.getElementById(`emojiTable${i}`);
-  elem.classList.toggle("d-none");
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////GENERATED HTML/JS////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////GENERATED HTML///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function generatePostCard(index) {
   const post = posts[index];
@@ -190,7 +185,7 @@ function generatePostCard(index) {
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                 </svg>
-                <span>Liked by ${post["author"]} and others...</span>
+                <span>Liked by <b>${post["author"]}</b> and others...</span>
             </div>
             <div id="commentOUT${index}" class="comment-section">
                
@@ -219,15 +214,19 @@ function generatePostComment(i, j) {
   return /*html*/ `
   <div class="comment-wrapper">
       <div class="comment-container">
+        <div class="d-flex align-items-start">
           <img src="${post["image"]}">
-          <div>${posts[0]["author"]}</div>
-          <div>${comment}</div>
+          <div style="margin-top: 4px;"><b>${posts[0]["author"]}</b></div>
+          <div class="comment"><p>${comment}</p></div>
+        </div>
+          <div class="like-button-small">
+            <button id="like${i}, ${like}" onclick="liked(${i}, ${like})">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="darkgray" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+              </svg>
+            </button>
+          </div>
       </div>
-       <button id="like${i}, ${like}" onclick="liked(${i}, ${like})">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="darkgray" class="bi bi-heart-fill" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-        </svg>
-       </button>
  </div>`;
 }
 
@@ -263,4 +262,12 @@ function changeSvgB(index) {
   for (let i = 0; i < menuIcons.length; i++) {
     menuIcons[i].classList.toggle("d-none");
   }
+}
+
+/**
+ * displays emojis on click
+ */
+function emoji(i) {
+  let elem = document.getElementById(`emojiTable${i}`);
+  elem.classList.toggle("d-none");
 }
