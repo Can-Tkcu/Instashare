@@ -51,10 +51,9 @@ let posts = [
 
 let emojis = ["😍", "🥰", "😂", "😀", "❤", "💯"];
 
-let postContainer = document.getElementById("postCards");
+let postContainer = document.getElementById("postCards"); 
 
 /** TODO's
- * footer
  * search function
  * save/load
  * responsive
@@ -88,6 +87,16 @@ function addEmoji(i, index) {
   inputField.value += emoji;
 }
 
+function toggleScrollLeft(){
+  const element = document.getElementById("scrollables");
+  element.scrollLeft += -200;
+  
+}
+
+function toggleScrollRight(){
+  const element = document.getElementById("scrollables");
+  element.scrollLeft += 200;
+}
 ////////////////////////////////////////////////////////////////////////////////////////////RENDER FUNCS////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function render() {

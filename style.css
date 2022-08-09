@@ -1,3 +1,6 @@
+* {
+    scroll-behavior: smooth;
+}
 h1 {
     font-family: "Lobster Two", cursive;
     font-size: 2rem;
@@ -132,6 +135,7 @@ nav {
 }
 
 .swiper-bar-container {
+    position: relative;
     display: flex;
     overflow-x: scroll;
     height: 115px;
@@ -145,6 +149,18 @@ nav {
     height: 60px;
     width: 60px;
     margin: 0 7px;
+}
+
+.swiper-button-left{
+    position: absolute;
+    left: 20px;
+    cursor: pointer;
+}
+
+.swiper-button-right{
+    position: absolute;
+    right: 20px;
+    cursor: pointer;
 }
 
 /**************************************POST CARD*************************************************/
@@ -241,6 +257,10 @@ nav {
     cursor: pointer;
 }
 
+.bookmark-icon svg:hover{
+    opacity: 0.5;
+}
+
 .like-section {
     display: flex;
     align-items: center;
@@ -297,7 +317,7 @@ nav {
     display: flex;
     align-items: flex-start;
     font-size: 14px;
-    margin: 8px;
+    padding: 8px 0;
     width: 100%;
     justify-content: space-between;
 }
@@ -395,6 +415,11 @@ button.liked svg {
     height: 50px;
 }
 
+.switch{
+    color: #0d6efd;
+    cursor: pointer;
+}
+
 .info-text {
     display: flex;
     justify-content: space-between;
@@ -403,6 +428,10 @@ button.liked svg {
 
 .suggested-users {
     margin: 8px;
+}
+
+.sugg-user span{
+    margin-left: 4px;
 }
 
 footer {
