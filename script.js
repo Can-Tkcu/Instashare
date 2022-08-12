@@ -51,7 +51,7 @@ let posts = [
 
 let emojis = ["😍", "🥰", "😂", "😀", "❤", "💯"];
 
-let postContainer = document.getElementById("postCards"); 
+let postContainer = document.getElementById("postCards");
 
 /** TODO's
  * search function
@@ -62,6 +62,20 @@ let postContainer = document.getElementById("postCards");
 
 function submitSearch() {
   console.log("searched");
+}
+
+function filterNames() {
+  let search = document.getElementById("name").value;
+  search = search.toLowerCase();
+  console.log(search);
+  postContainer.innerHTML = "";
+  for (let i = 0; i < posts.length; i++) {
+    const post = posts[i];
+    if (post["author"].toLowerCase().includes(search)) {
+      postContainer.innerHTML = generatePostCard(i);
+      renderEmojis(i);
+    } 
+  } 
 }
 
 function stopProp() {
@@ -83,17 +97,15 @@ function liked(i, like) {
 function addEmoji(i, index) {
   let inputField = document.getElementById(`commentIN${i}`);
   let emoji = emojis[index];
-
   inputField.value += emoji;
 }
 
-function toggleScrollLeft(){
+function toggleScrollLeft() {
   const element = document.getElementById("scrollables");
   element.scrollLeft += -200;
-  
 }
 
-function toggleScrollRight(){
+function toggleScrollRight() {
   const element = document.getElementById("scrollables");
   element.scrollLeft += 200;
 }
@@ -101,7 +113,6 @@ function toggleScrollRight(){
 
 function render() {
   renderPostCards();
-  renderComments();
 }
 
 function renderPostCards() {
@@ -109,6 +120,7 @@ function renderPostCards() {
     postContainer.innerHTML += generatePostCard(i);
     renderEmojis(i);
   }
+  renderComments();
 }
 
 function renderComments() {
@@ -197,7 +209,6 @@ function generatePostCard(index) {
                 <span>Liked by <b>${post["author"]}</b> and others...</span>
             </div>
             <div id="commentOUT${index}" class="comment-section">
-               
             </div>
             <form class="comment-form padding" onsubmit="submitComment(${index}); return false;">
                 <div id="emojiList" class="emoji-list" onclick="emoji(${index})">
@@ -210,10 +221,15 @@ function generatePostCard(index) {
                   </div>
                 </div>
                 <input id="commentIN${index}" type="text" required  min-length="1" class="comment-input padding" name="UserComment" placeholder="Add Comment...">
-                <button class="post-button">Post</button>
+                <button class="post-button" onclick="scrollToBottom(${index})">Post</button>
             </form>
         </div>
     </div>`;
+}
+
+function scrollToBottom(index) {
+  let element = document.getElementById(`commentOUT${index}`);
+  element.scrollTop += element.scrollHeight;
 }
 
 function generatePostComment(i, j) {
@@ -221,7 +237,7 @@ function generatePostComment(i, j) {
   const comment = post["comments"][j];
   const like = [j];
   return /*html*/ `
-  <div class="comment-wrapper">
+  <div id="comment${i}${j}" class="comment-wrapper">
       <div class="comment-container">
         <div class="d-flex align-items-start">
           <img src="${post["image"]}">
