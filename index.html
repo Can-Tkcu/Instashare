@@ -19,7 +19,7 @@
     <nav>
         <div class="nav-wrapper">
             <h1>Instashare</h1>
-            <input type="text" class="input-group-text" id="name" placeholder="Search..." onkeydown="filterNames()"/>
+            <input type="text" class="input-group-text" id="name" placeholder="Search..." onkeydown="filterNames(); return false;"/>
             <div class="nav-options">
                 <img src="img/bootstrap-icons-1.9.1/house-door.svg" />
                 <div class="chat-btn">
@@ -37,8 +37,12 @@
             </div>
         </div>
     </nav>
+    <div class="phone d-none">
+        <h2>Instashare</h2>
+    </div>
     <div class="main-content">
         <div class="main-content-wrapper">
+            
             <div class="swiper-bar-wrapper justify-content-center">
                 <div class="swiper-bar-container justify-content-center align-items-center">
                     <div class="swiper-button-left" onclick="toggleScrollLeft()">
