@@ -19,7 +19,8 @@
     <nav>
         <div class="nav-wrapper">
             <h1>Instashare</h1>
-            <input type="text" class="input-group-text" id="name" placeholder="Search..." onkeydown="filterNames(); return false;"/>
+            <input type="text" class="input-group-text" id="name" placeholder="Search..."
+                onkeydown="filterNames(); return false;" />
             <div class="nav-options">
                 <img src="img/bootstrap-icons-1.9.1/house-door.svg" />
                 <div class="chat-btn">
@@ -37,17 +38,22 @@
             </div>
         </div>
     </nav>
-    <div class="phone d-none">
+    <div class="phone padding d-none">
         <h2>Instashare</h2>
+        <div class="messages">
+            <img src="img/bootstrap-icons-1.9.1/chat-dots.svg" />
+        </div>
     </div>
     <div class="main-content">
         <div class="main-content-wrapper">
-            
+
             <div class="swiper-bar-wrapper justify-content-center">
                 <div class="swiper-bar-container justify-content-center align-items-center">
                     <div class="swiper-button-left" onclick="toggleScrollLeft()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="lightgray" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-                            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="lightgray"
+                            class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
                         </svg>
                     </div>
                     <div id="scrollables" class="d-flex overflow-auto">
@@ -65,8 +71,10 @@
                         <img src="img/bootstrap-icons-1.9.1/person-circle.svg" />
                     </div>
                     <div class="swiper-button-right" onclick="toggleScrollRight()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="lightgray" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="lightgray"
+                            class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
                         </svg>
                     </div>
                 </div>

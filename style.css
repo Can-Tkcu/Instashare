@@ -412,6 +412,22 @@ button.liked svg {
     background-color: var(--bs-gray-400);
 }
 
+.delete-btn{
+    display: flex;
+    align-items: flex-start;
+    margin-left: 8px;
+    margin-top: 4px;
+    cursor: pointer;
+    border: solid 1px transparent;
+}
+
+.delete-btn:hover{
+    transition: 175ms ease-in-out;
+    border: solid 1px lightgray;
+    border-radius: 100vw;
+    margin-top: 5px;
+    background-color: rgb(255, 209, 209);
+}
 /************************************************************************************************/
 
 .info-box {
@@ -531,11 +547,20 @@ footer {
     .phone {
         position: fixed;
         display: flex !important;
-        justify-content: center;
+        justify-content: space-between;
         border: 1px solid lightgray;
         z-index: 10;
         background-color: white;
         width: 100%;
     }
 
+    .messages {
+        display: flex;
+        align-items: center;
+    }
+
+    .messages img{
+        height: 25px;
+        margin-bottom: 10px;
+    }
 }
