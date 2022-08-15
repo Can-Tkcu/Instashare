@@ -56,13 +56,11 @@ let emojis = ["😍", "🥰", "😂", "😀", "❤", "💯"];
 let postContainer = document.getElementById("postCards");
 
 /** TODO's
- * finish deleteComment
- * double tap does not work
  */
 
-/* function submitSearch() {
-  console.log("searched");
-} */
+//   function submitSearch() {
+//   console.log("searched");
+// } 
 
 function filterNames() {
   let search = document.getElementById("name").value;
@@ -86,14 +84,15 @@ function submitComment(index) {
   let input = document.getElementById(`commentIN${index}`);
   posts[index]["comments"].push(input.value);
   renderComments();
+  scrollToBottom(index);
   input.value = "";
   saveApp();
 }
 
 function deleteComment(index, comment) {
-  posts[index]["comments"].splice(comment);
-  renderComments();
-  saveApp();
+    posts[index]["comments"].splice(comment);
+    renderComments();
+    saveApp(); 
 }
 
 function liked(i, like) {
@@ -233,7 +232,7 @@ function generatePostCard(index) {
                   </div>
                 </div>
                 <input id="commentIN${index}" type="text" required  min-length="1" class="comment-input padding" name="UserComment" placeholder="Add Comment...">
-                <button class="post-button" onclick="scrollToBottom(${index})">Post</button>
+                <button class="post-button">Post</button>
             </form>
         </div>
     </div>`;
@@ -249,7 +248,7 @@ function generatePostComment(i, j) {
   const comment = post["comments"][j];
   const like = [j];
   return /*html*/ `
-  <div id="comment${i}${j}" class="comment-wrapper">
+  <div id="comment" class="comment-wrapper">
       <div class="comment-container">
         <div class="d-flex align-items-start">
           <img src="${post["image"]}">
