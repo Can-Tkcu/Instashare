@@ -520,6 +520,10 @@ footer {
         top: 48px;
     }
 
+    .main-content-wrapper{
+        padding-bottom: 32px;
+    }
+
     .nav-wrapper {
         justify-content: center;
     }

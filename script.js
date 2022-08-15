@@ -49,18 +49,20 @@ let posts = [
   },
 ];
 
+loadApp();
+
 let emojis = ["😍", "🥰", "😂", "😀", "❤", "💯"];
 
 let postContainer = document.getElementById("postCards");
 
 /** TODO's
- * save/load
- * responsive
+ * finish deleteComment
+ * double tap does not work
  */
 
-function submitSearch() {
+/* function submitSearch() {
   console.log("searched");
-}
+} */
 
 function filterNames() {
   let search = document.getElementById("name").value;
@@ -72,8 +74,8 @@ function filterNames() {
     if (post["author"].toLowerCase().includes(search)) {
       postContainer.innerHTML = generatePostCard(i);
       renderEmojis(i);
-    } 
-  } 
+    }
+  }
 }
 
 function stopProp() {
@@ -85,11 +87,19 @@ function submitComment(index) {
   posts[index]["comments"].push(input.value);
   renderComments();
   input.value = "";
+  saveApp();
+}
+
+function deleteComment(index, comment) {
+  posts[index]["comments"].splice(comment);
+  renderComments();
+  saveApp();
 }
 
 function liked(i, like) {
   let elem = document.getElementById(`like${i}, ${like}`);
   elem.classList.toggle("liked");
+  saveApp();
 }
 
 function addEmoji(i, index) {
@@ -111,6 +121,7 @@ function toggleScrollRight() {
 
 function render() {
   renderPostCards();
+  loadApp();
 }
 
 function renderPostCards() {
@@ -119,6 +130,7 @@ function renderPostCards() {
     renderEmojis(i);
   }
   renderComments();
+  saveApp();
 }
 
 function renderComments() {
@@ -130,6 +142,7 @@ function renderComments() {
       commentOUT.innerHTML += generatePostComment(i, j);
     }
   }
+  saveApp();
 }
 
 function renderEmojis(i) {
@@ -138,6 +151,7 @@ function renderEmojis(i) {
     const element = emojis[index];
     list.innerHTML += `<span id="emojis" onclick="addEmoji(${i},${index})">${element}</span>`;
   }
+  saveApp();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////GENERATED HTML///////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -166,7 +180,7 @@ function generatePostCard(index) {
             </div>
         </div>
         <div class="card-content">
-            <img src="${post["content"]}">
+            <img src="${post["content"]}" ondblclick="changeSvgH(${index})">
         </div>
         <div class="card-bottom-section">
             <div class="interaction">
@@ -244,6 +258,7 @@ function generatePostComment(i, j) {
         </div>
           <div class="like-button-small">
             <button id="like${i}, ${like}" onclick="liked(${i}, ${like})">
+            <button onclick="deleteComment(${i}, ${j})"></button>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="darkgray" class="bi bi-heart-fill" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
               </svg>
@@ -293,4 +308,18 @@ function changeSvgB(index) {
 function emoji(i) {
   let elem = document.getElementById(`emojiTable${i}`);
   elem.classList.toggle("d-none");
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////SAVE & LOAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function saveApp() {
+  let postsAsText = JSON.stringify(posts);
+  localStorage.setItem("posts", postsAsText);
+}
+
+function loadApp() {
+  let postsAsText = localStorage.getItem("posts");
+  if (postsAsText) {
+    posts = JSON.parse(postsAsText);
+  }
 }
