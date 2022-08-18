@@ -49,21 +49,11 @@ let posts = [
   },
 ];
 
-let emojiOpened = false;
-
 loadApp();
 
 let emojis = ["😍", "🥰", "😂", "😀", "❤", "💯"];
 
 let postContainer = document.getElementById("postCards");
-
-/** TODO's
- * style icons maybe ?
- */
-
-//   function submitSearch() {
-//   console.log("searched");
-// }
 
 function hideIcon(self) {
   self.style.backgroundImage = "none";
@@ -202,7 +192,7 @@ function generatePostCard(index) {
                     <svg xmlns="http://www.w3.org/2000/svg" onclick="changeSvgH(${index})" width="24" height="24" fill="tomato" class="heart${index} bi bi-heart-fill d-none" viewBox="0 0 16 16">
                       <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                     </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" onclick="changeSvgC(${index}), openComments(${index})" width="25" height="25" fill="currentColor" class="chat${index} bi bi-chat" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" onclick="changeSvgC(${index}), focusComments(${index})" width="25" height="25" fill="currentColor" class="chat${index} bi bi-chat" viewBox="0 0 16 16">
                         <path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z"/>
                     </svg>
                     <svg xmlns="http://www.w3.org/2000/svg" onclick="changeSvgC(${index})" width="25" height="25" fill="black" class="chat${index} bi bi-chat-fill d-none" viewBox="0 0 16 16">
@@ -239,9 +229,7 @@ function generatePostCard(index) {
                       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                       <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
                   </svg>
-                  <div id="emojiTable${index}" class="emoji-table d-none" onclick="stopProp()">
-
-                  </div>
+                  <div id="emojiTable${index}" class="emoji-table d-none" onclick="stopProp()"> </div>
                 </div>
                 <input id="commentIN${index}" type="text" required  min-length="1" class="comment-input padding" name="UserComment" placeholder="Add Comment...">
                 <button class="post-button">Post</button>
@@ -328,9 +316,8 @@ function emojiClose() {
   }
 }
 
-function openComments(index) {
+function focusComments(index) {
   let input = document.getElementById(`commentIN${index}`);
-
   input.focus();
   input.select();
 }
