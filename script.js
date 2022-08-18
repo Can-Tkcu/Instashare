@@ -317,18 +317,14 @@ function changeSvgB(index) {
  * displays emojis on click
  */
 function emoji(i) {
-  console.log('test')
-  if (i != undefined) {
-    let elem = document.getElementById(`emojiTable${i}`);
+  let elem = document.getElementById(`emojiTable${i}`);
   elem.classList.toggle("d-none");
-  if (!emojiOpened) {
-    emojiOpened = true;
-  }
-  } else if (i == undefined && emojiOpened) {
-    for (let index = 0; index < posts.length; index++) {
-      document.getElementById(`emojiTable${index}`).classList.add('d-none');
-    }
-    emojiOpened = false
+}
+
+function emojiClose() {
+  for (let index = 0; index < posts.length; index++) {
+    let elem = document.getElementById(`emojiTable${index}`);
+    elem.classList.add("d-none");
   }
 }
 
